@@ -34,3 +34,13 @@ variable "private_subnet_ids" {
   type        = list(string)
   description = "The private subnet IDs for your EKS cluster to use."
 }
+
+variable "authentication_mode" {
+  description = "The authentication mode to use to grant cluster users access. Valid values are 'API' or 'API_AND_CONFIG_MAP'."
+  type        = string
+}
+
+variable "bootstrap_cluster_creator_admin_permissions" {
+  description = "Boolean toggle to set whether or not the cluster creator IAM principle has cluster admin permissions"
+  type        = string
+}
