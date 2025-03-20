@@ -35,12 +35,12 @@ variable "enable_ha_ngw" {
 
 variable "enable_managed_nodegroup" {
   description = "Boolean toggle to enable the default managed nodegroup."
-  type = bool
-  default = true 
+  type        = bool
+  default     = true
 }
 
 variable "enable_karpenter_fargate" {
   description = "Boolean toggle to enable the EKS Fargate for the Karpenter namespace."
-  type = bool
-  default = false 
+  type        = bool
+  default     = false
 }
