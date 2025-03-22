@@ -18,6 +18,17 @@ variable "enable_irsa" {
   description = "Boolean toggle to create an OIDC provider for the EKS cluster."
 }
 
+variable "enable_pod_identity_agent" {
+  type        = bool
+  description = "Boolean toggle to create an Pod Identity for the EKS cluster."
+}
+
+variable "pod_identity_agent_version" {
+  description = "The pod identity agent version to deploy."
+  type        = string
+}
+
+
 variable "enabled_cluster_log_types" {
   type        = list(string)
   description = "Boolean toggle to enable the EKS Private API server endpoint."
