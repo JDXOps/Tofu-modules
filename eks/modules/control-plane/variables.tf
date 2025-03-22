@@ -13,6 +13,11 @@ variable "enable_endpoint_private_access" {
   description = "Boolean toggle to enable the EKS Private API server endpoint."
 }
 
+variable "enable_irsa" {
+  type        = bool
+  description = "Boolean toggle to create an OIDC provider for the EKS cluster."
+}
+
 variable "enabled_cluster_log_types" {
   type        = list(string)
   description = "Boolean toggle to enable the EKS Private API server endpoint."
