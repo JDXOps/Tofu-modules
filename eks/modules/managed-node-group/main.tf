@@ -1,5 +1,5 @@
 data "aws_iam_policy_document" "eks_assume_node_role_policy_document" {
-  count = var.enable_managed_nodegroup ? 1 : 0 
+  count = var.enable_managed_nodegroup ? 1 : 0
   statement {
     effect = "Allow"
 
@@ -13,14 +13,14 @@ data "aws_iam_policy_document" "eks_assume_node_role_policy_document" {
 }
 
 resource "aws_iam_role" "eks_node_role" {
-  count = var.enable_managed_nodegroup ? 1 : 0 
+  count               = var.enable_managed_nodegroup ? 1 : 0
   name                = "${var.name}-eks-node-role"
   assume_role_policy  = data.aws_iam_policy_document.eks_assume_node_role_policy_document[0].json
   managed_policy_arns = ["arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy", "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly", "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"]
 }
 
 resource "aws_eks_node_group" "eks_nodegroup" {
-  count = var.enable_managed_nodegroup ? 1 : 0 
+  count           = var.enable_managed_nodegroup ? 1 : 0
   cluster_name    = data.aws_eks_cluster.eks_cluster.name
   node_group_name = "default"
   version         = data.aws_eks_cluster.eks_cluster.version
@@ -39,7 +39,7 @@ resource "aws_eks_node_group" "eks_nodegroup" {
   instance_types = var.default_node_group_instance_types
 
   tags = {
-    "k8s.io/cluster-autoscaler/enabled" = true 
+    "k8s.io/cluster-autoscaler/enabled"                                = true
     "k8s.io/cluster-autoscaler/${data.aws_eks_cluster.eks_cluster.id}" = "owned"
   }
 }

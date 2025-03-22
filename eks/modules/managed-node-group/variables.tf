@@ -1,7 +1,7 @@
 variable "enable_managed_nodegroup" {
   description = "Boolean toggle to enable the default managed nodegroup."
-  type = bool
-  default = true 
+  type        = bool
+  default     = true
 }
 
 variable "name" {
