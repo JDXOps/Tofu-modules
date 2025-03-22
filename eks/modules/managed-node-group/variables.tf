@@ -4,6 +4,16 @@ variable "enable_managed_nodegroup" {
   default     = true
 }
 
+variable "enable_cluster_autoscaler" {
+  description = "The version of the cluster autoscaler Helm chart to deploy."
+  type        = string
+}
+
+variable "cluster_autoscaler_version" {
+  description = "Boolean toggle to enable the default managed nodegroup."
+  type        = string
+}
+
 variable "name" {
   type        = string
   description = "The name of the EKS cluster."
