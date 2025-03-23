@@ -28,6 +28,17 @@ variable "pod_identity_agent_version" {
   type        = string
 }
 
+variable "enable_metrics_server" {
+  type        = bool
+  description = "Boolean toggle to deploy the Metrics Server."
+  default     = true
+}
+
+variable "metrics_server_version" {
+  description = "The version of the Metrics Server Helm chart to deploy."
+  type        = string
+}
+
 
 variable "enabled_cluster_log_types" {
   type        = list(string)
