@@ -20,7 +20,6 @@ data "aws_iam_policy_document" "cluster_autoscaler_pod_identity_assume_role" {
   }
 }
 
-
 data "aws_iam_policy_document" "cluster_autoscaler_pod_identity" {
   count = var.enable_cluster_autoscaler ? 1 : 0
   statement {
@@ -91,6 +90,10 @@ resource "helm_release" "cluster_autoscaler" {
     {
       name  = "autoDiscovery.clusterName"
       value = data.aws_eks_cluster.eks_cluster.name
+    },
+    {
+      name  = "awsRegion"
+      value = data.aws_region.current.name
     },
     {
       name  = "rbac.serviceAccount.create"
