@@ -16,29 +16,19 @@ variable "enable_endpoint_private_access" {
 variable "enable_irsa" {
   type        = bool
   description = "Boolean toggle to create an OIDC provider for the EKS cluster."
+  default     = false
 }
 
 variable "enable_pod_identity_agent" {
   type        = bool
   description = "Boolean toggle to create an Pod Identity for the EKS cluster."
+  default     = true
 }
 
 variable "pod_identity_agent_version" {
   description = "The pod identity agent version to deploy."
   type        = string
 }
-
-variable "enable_metrics_server" {
-  type        = bool
-  description = "Boolean toggle to deploy the Metrics Server."
-  default     = true
-}
-
-variable "metrics_server_version" {
-  description = "The version of the Metrics Server Helm chart to deploy."
-  type        = string
-}
-
 
 variable "enabled_cluster_log_types" {
   type        = list(string)
@@ -70,4 +60,10 @@ variable "authentication_mode" {
 variable "bootstrap_cluster_creator_admin_permissions" {
   description = "Boolean toggle to set whether or not the cluster creator IAM principle has cluster admin permissions"
   type        = string
+}
+
+variable "enable_bootstrap_nodegroup" {
+  type        = bool
+  description = "Toggle to enable the nodegroup to install Karpenter initially."
+  default     = true
 }

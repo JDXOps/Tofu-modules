@@ -38,4 +38,6 @@ resource "aws_eks_cluster" "eks_cluster" {
     authentication_mode                         = var.authentication_mode
     bootstrap_cluster_creator_admin_permissions = var.bootstrap_cluster_creator_admin_permissions
   }
+
+  depends_on = [aws_iam_role.eks_cluster_role]
 }
