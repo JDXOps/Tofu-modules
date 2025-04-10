@@ -1,3 +1,5 @@
+## Instance profile that gets passed to nodes launched by Karpenter
+
 resource "aws_iam_instance_profile" "karpenter" {
   count = var.enable_karpenter ? 1 : 0
   role  = aws_iam_role.eks_node[0].name
