@@ -1,3 +1,30 @@
+# IAM Role used by Karpenter Pods
+resource "aws_eks_pod_identity_association" "karpenter" {
+  count              = var.enable_karpenter ? 1 : 0
+  cluster_name    = data.aws_eks_cluster.eks_cluster[0].name
+  namespace       = var.karpenter_namespace
+  service_account = var.karpenter_service_account
+  role_arn        = aws_iam_role.karpenter[0].arn
+}
+
+
+data "aws_iam_policy_document" "karpenter_assume_role" {
+  count              = var.enable_karpenter ? 1 : 0
+  statement {
+    effect = "Allow"
+
+    principals {
+      type        = "Service"
+      identifiers = ["pods.eks.amazonaws.com"]
+    }
+
+    actions = [
+      "sts:AssumeRole",
+      "sts:TagSession"
+    ]
+  }
+}
+
 resource "aws_iam_role" "karpenter" {
   count              = var.enable_karpenter ? 1 : 0
   description        = "IAM Role for Karpenter Controller (pod) to assume"
@@ -6,32 +33,6 @@ resource "aws_iam_role" "karpenter" {
   inline_policy {
     policy = data.aws_iam_policy_document.karpenter[0].json
     name   = "karpenter"
-  }
-
-}
-
-
-data "aws_iam_policy_document" "karpenter_assume_role" {
-  count = var.enable_karpenter ? 1 : 0
-  statement {
-    actions = ["sts:AssumeRoleWithWebIdentity"]
-    condition {
-      test     = "StringEquals"
-      values   = ["system:serviceaccount:${var.karpenter_namespace}:${var.karpenter_service_account}"]
-      variable = "${data.aws_iam_openid_connect_provider.cluster_oidc_provider.url}:sub"
-    }
-
-    condition {
-      test     = "StringEquals"
-      values   = ["sts.amazonaws.com"]
-      variable = "${data.aws_iam_openid_connect_provider.cluster_oidc_provider.url}:aud"
-    }
-
-    principals {
-      type        = "Federated"
-      identifiers = [data.aws_iam_openid_connect_provider.cluster_oidc_provider.arn]
-    }
-
   }
 }
 

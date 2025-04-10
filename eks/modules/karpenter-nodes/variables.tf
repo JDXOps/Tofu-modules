@@ -39,4 +39,3 @@ variable "karpenter_subnet_ids" {
   type        = list(string)
   description = "The subnet IDs for Karpenter to deploy EC2s into'."
 }
-
