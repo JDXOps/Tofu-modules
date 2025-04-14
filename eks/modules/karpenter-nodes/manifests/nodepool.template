@@ -1,0 +1,49 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: default
+spec:
+  template:
+    metadata:
+      labels:
+        billing-team: default
+
+      annotations:
+        example.com/owner: default
+    spec:
+
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default
+
+      expireAfter: 720h
+
+      terminationGracePeriod: 48h
+
+      requirements:
+        - key: "node.kubernetes.io/instance-type"
+          operator: In
+          values: ["t4g.small","t4g.medium"]
+        - key: "topology.kubernetes.io/zone"
+          operator: In
+          values: ["eu-west-1a", "eu-west-1b","eu-west-1c"]
+        - key: "kubernetes.io/arch"
+          operator: In
+          values: ["arm64"]
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["on-demand"]
+
+  disruption:
+    consolidationPolicy: WhenEmptyOrUnderutilized
+    consolidateAfter: 1m # Added to allow additional control over consolidation aggressiveness
+
+  limits:
+    cpu: "1000"
+    memory: 1000Gi
+
+  resources:
+    cpu: "20"
+    memory: "8192Mi"
+    ephemeral-storage: "100Gi"

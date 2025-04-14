@@ -37,5 +37,10 @@ variable "karpenter_version" {
 
 variable "karpenter_subnet_ids" {
   type        = list(string)
-  description = "The subnet IDs for Karpenter to deploy EC2s into'."
+  description = "The IDs of the subnets to use for nodes provisioned by Karpenter."
+}
+
+variable "security_group_id" {
+  type        = string
+  description = "The ID of the security group to use for nodes provisioned by Karpenter"
 }

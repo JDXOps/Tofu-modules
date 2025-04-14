@@ -1,6 +1,6 @@
 # IAM Role used by Karpenter Pods
 resource "aws_eks_pod_identity_association" "karpenter" {
-  count              = var.enable_karpenter ? 1 : 0
+  count           = var.enable_karpenter ? 1 : 0
   cluster_name    = data.aws_eks_cluster.eks_cluster[0].name
   namespace       = var.karpenter_namespace
   service_account = var.karpenter_service_account
@@ -9,7 +9,7 @@ resource "aws_eks_pod_identity_association" "karpenter" {
 
 
 data "aws_iam_policy_document" "karpenter_assume_role" {
-  count              = var.enable_karpenter ? 1 : 0
+  count = var.enable_karpenter ? 1 : 0
   statement {
     effect = "Allow"
 
