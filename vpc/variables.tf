@@ -39,3 +39,15 @@ variable "enable_karpenter_fargate" {
   type        = bool
   default     = false
 }
+
+variable "public_subnet_tags" {
+  description = "Tags to add to public subnets."
+  type        = map(any)
+  default     = {}
+}
+
+variable "private_subnet_tags" {
+  description = "Tags to add to private subnets."
+  type        = map(any)
+  default     = {}
+}
