@@ -1,3 +1,8 @@
+variable "vpc_name" {
+  description = "The name of the VPC"
+  type = string
+}
+ 
 variable "vpc_cidr" {
   description = "The CIDR to use for the AWS VPC."
   type        = string
@@ -16,28 +21,19 @@ variable "private_subnet_cidrs" {
 variable "enable_dns_hostnames" {
   description = "A boolean flag to enable/disable DNS support in the VPC."
   type        = bool
+  default     = true 
 }
 
 variable "enable_dns_support" {
   description = "A boolean flag to enable/disable DNS support in the VPC."
   type        = bool
+  default     = true 
 }
 
 variable "enable_ha_ngw" {
   description = "A boolean flag to enable/disable a high availability setting for the NAT Gateway."
   type        = bool
-}
-
-variable "enable_managed_nodegroup" {
-  description = "Boolean toggle to enable the default managed nodegroup."
-  type        = bool
-  default     = true
-}
-
-variable "enable_karpenter_fargate" {
-  description = "Boolean toggle to enable the EKS Fargate for the Karpenter namespace."
-  type        = bool
-  default     = false
+  default = false 
 }
 
 variable "public_subnet_tags" {
