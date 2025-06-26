@@ -1,13 +1,33 @@
+# AWS VPC OpenTofu Module
+
+This module provisions a **secure, multi-AZ Amazon Virtual Private Cloud (VPC)** using [OpenTofu](https://opentofu.org/) 
+
+## 🧱 Key Features
+
+- 🌐 **Multi-AZ VPC architecture** with public and private subnets evenly distributed
+- 🔄 **Optional high-availability NAT Gateway support** (`enable_ha_ngw`) for resilient outbound access from private subnets
+- 🔐 **Private subnet isolation** with no direct internet exposure
+- 🧩 **Fully parameterized** to support reusable, multi-environment infrastructure (dev, staging, prod)
+- 🏷️ **Custom subnet tagging** for Kubernetes integration (e.g., internal/public load balancer roles)
+
+## ✅ Use Cases
+
+- Provision a reliable VPC foundation for EKS, RDS, ALB, and other AWS services
+- Separate public-facing services from private workloads securely
+- Enable scalable, fault-tolerant architecture across multiple AZs
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.0.0 |
 
 ## Modules
 
@@ -42,15 +62,16 @@ No modules.
 | <a name="input_enable_karpenter_fargate"></a> [enable\_karpenter\_fargate](#input\_enable\_karpenter\_fargate) | Boolean toggle to enable the EKS Fargate for the Karpenter namespace. | `bool` | `false` | no |
 | <a name="input_enable_managed_nodegroup"></a> [enable\_managed\_nodegroup](#input\_enable\_managed\_nodegroup) | Boolean toggle to enable the default managed nodegroup. | `bool` | `true` | no |
 | <a name="input_private_subnet_cidrs"></a> [private\_subnet\_cidrs](#input\_private\_subnet\_cidrs) | Public subnet CIDRs to use in the AWS VPC | `list(string)` | n/a | yes |
+| <a name="input_private_subnet_tags"></a> [private\_subnet\_tags](#input\_private\_subnet\_tags) | Tags to add to private subnets. | `map(any)` | `{}` | no |
 | <a name="input_public_subnet_cidrs"></a> [public\_subnet\_cidrs](#input\_public\_subnet\_cidrs) | Public subnet CIDRs to use in the AWS VPC | `list(string)` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | The AWS region to deploy resources into. | `string` | n/a | yes |
+| <a name="input_public_subnet_tags"></a> [public\_subnet\_tags](#input\_public\_subnet\_tags) | Tags to add to public subnets. | `map(any)` | `{}` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | The CIDR to use for the AWS VPC. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | n/a |
-| <a name="output_public_subnet_ids"></a> [public\_subnet\_ids](#output\_public\_subnet\_ids) | n/a |
-| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | n/a |
+| <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | The IDs of the provisioned private subnets |
+| <a name="output_public_subnet_ids"></a> [public\_subnet\_ids](#output\_public\_subnet\_ids) | The IDs of the provisioned public subnets |
+| <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The AWS given ID of the provisioned VPC |
 <!-- END_TF_DOCS -->
