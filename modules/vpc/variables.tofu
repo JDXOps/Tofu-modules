@@ -1,3 +1,8 @@
+variable "vpc_name" {
+  description = "The name of the VPC"
+  type = string
+}
+ 
 variable "vpc_cidr" {
   description = "The CIDR to use for the AWS VPC."
   type        = string
