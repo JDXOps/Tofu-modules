@@ -30,11 +30,6 @@ variable "engine" {
   description = "The databsae engine to use for this DB instance."
 }
 
-variable "engine" {
-  type        = string
-  description = "The databsae engine to use for this DB instance."
-}
-
 variable "engine_version" {
   type        = string
   description = "The engine version to use."

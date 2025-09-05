@@ -1,0 +1,46 @@
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+No requirements.
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_db_instance.db_instance](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_instance) | resource |
+| [aws_db_subnet_group.subnet_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_allocated_storage"></a> [allocated\_storage](#input\_allocated\_storage) | The allocated storage in GB. | `number` | n/a | yes |
+| <a name="input_enable_deletion_protection"></a> [enable\_deletion\_protection](#input\_enable\_deletion\_protection) | The database can't be deleted if this value is set to true | `bool` | `true` | no |
+| <a name="input_enable_multi_az"></a> [enable\_multi\_az](#input\_enable\_multi\_az) | Specifies if the RDS instance is multi az. | `bool` | n/a | yes |
+| <a name="input_engine"></a> [engine](#input\_engine) | The databsae engine to use for this DB instance. | `string` | n/a | yes |
+| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | The engine version to use. | `string` | n/a | yes |
+| <a name="input_identifier"></a> [identifier](#input\_identifier) | The name of the RDS instance. | `string` | n/a | yes |
+| <a name="input_instance_class"></a> [instance\_class](#input\_instance\_class) | The instance type of the RDS instance. | `string` | n/a | yes |
+| <a name="input_master_user_password"></a> [master\_user\_password](#input\_master\_user\_password) | The password for the master db user. | `string` | n/a | yes |
+| <a name="input_master_user_username"></a> [master\_user\_username](#input\_master\_user\_username) | The username for the master db user. | `string` | n/a | yes |
+| <a name="input_max_allocated_storage"></a> [max\_allocated\_storage](#input\_max\_allocated\_storage) | Max Storage in GB the RDS instance is allowed to scale to. | `number` | n/a | yes |
+| <a name="input_option_group_name"></a> [option\_group\_name](#input\_option\_group\_name) | The name of the DB option group | `string` | `null` | no |
+| <a name="input_parameter_group_name"></a> [parameter\_group\_name](#input\_parameter\_group\_name) | The name of the DB parameter group | `string` | `null` | no |
+| <a name="input_port"></a> [port](#input\_port) | The port the DB accepts connections on. | `number` | n/a | yes |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of Subnet Ids that are for the RDS instance in a VPC. | `list(str)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | The password for the master db user. | `map(any)` | n/a | yes |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
