@@ -16,7 +16,7 @@ resource "aws_db_instance" "db_instance" {
   engine_version        = var.engine_version
   instance_class        = var.instance_class
   multi_az              = var.enable_multi_az
-  username              = var.master_user_password
+  username              = var.master_user_username
   password              = var.master_user_password
   option_group_name     = var.option_group_name
   parameter_group_name  = var.parameter_group_name

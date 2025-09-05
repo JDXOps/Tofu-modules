@@ -9,7 +9,7 @@ variable "allocated_storage" {
 }
 
 variable "subnet_ids" {
-  type        = list(str)
+  type        = list(string)
   description = "List of Subnet Ids that are for the RDS instance in a VPC."
 
 }
