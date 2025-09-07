@@ -35,5 +35,5 @@ resource "aws_kms_key" "kms_key" {
   count       = var.create_kms_key ? 1 : 0
   description = "At rest encryption key for ${var.identifier} RDS instance"
   key_usage   = "ENCRYPT_DECRYPT"
-  policy      = data.aws_iam_policy_document.rds_kms_policy.json
+  policy      = data.aws_iam_policy_document.rds_kms_policy[0].json
 }

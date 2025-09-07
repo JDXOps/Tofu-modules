@@ -112,7 +112,7 @@ variable "create_kms_key" {
 variable "kms_key_arn" {
   type        = string
   description = "The ARN of the KMS key to use for at rest encryption.  Set if var.create_kms_key is false"
-  default     = false
+  default     = null
 }
 
 variable "enable_at_rest_encryption" {
