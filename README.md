@@ -9,3 +9,4 @@ Each module is composable, environment-agnostic and easily integrates into any p
 ## Module List 
 
 - [`vpc`](./modules/vpc) – Provisions Multi AZ VPC with Public and Private Subnets
+- [`rds`](./modules/vpc) – Provisions Classic RDS DB Instance (no aurora)
