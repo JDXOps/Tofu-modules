@@ -30,13 +30,5 @@ resource "aws_db_instance" "db_instance" {
 
   # at rest encryption 
   storage_encrypted = var.enable_at_rest_encryption
-  kms_key_id        = var.enable_at_rest_encryption && var.create_kms_key == false ? coalesce(var.kms_key_arn, null) : var.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key.arn : null 
+  kms_key_id        = var.enable_at_rest_encryption && var.create_kms_key == false ? coalesce(var.kms_key_arn, null) : var.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key.arn : null
 }
-
-
-# if enable at rest encryption && var.create-kms_Key == false, 
-
-provider "aws" {
-  region = "us-west-2"
-}
-
