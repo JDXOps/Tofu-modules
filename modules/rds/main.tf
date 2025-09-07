@@ -1,5 +1,5 @@
 locals {
-  selected_kms_key = var.enable_at_rest_encryption && var.create_kms_key == false ? try(var.kms_key_arn, null) : tvar.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key[0].arn : null
+  selected_kms_key = var.enable_at_rest_encryption && var.create_kms_key == false ? try(var.kms_key_arn, null) : var.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key[0].arn : null
 }
 
 resource "aws_db_subnet_group" "subnet_group" {
