@@ -5,7 +5,6 @@ resource "aws_db_subnet_group" "subnet_group" {
   tags = var.tags
 }
 
-
 resource "aws_db_instance" "db_instance" {
   identifier            = var.identifier
   allocated_storage     = var.allocated_storage
@@ -28,4 +27,16 @@ resource "aws_db_instance" "db_instance" {
   backup_retention_period = var.backup_retention_period
   backup_window           = var.backup_window
   maintenance_window      = var.maintenance_window
+
+  # at rest encryption 
+  storage_encrypted = var.enable_at_rest_encryption
+  kms_key_id        = var.enable_at_rest_encryption && var.create_kms_key == false ? coalesce(var.kms_key_arn, null) : var.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key.arn : null 
 }
+
+
+# if enable at rest encryption && var.create-kms_Key == false, 
+
+provider "aws" {
+  region = "us-west-2"
+}
+
