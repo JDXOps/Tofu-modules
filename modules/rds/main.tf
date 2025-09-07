@@ -1,3 +1,7 @@
+locals {
+  selected_kms_key = var.enable_at_rest_encryption && var.create_kms_key == false ? try(var.kms_key_arn, null) : tvar.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key[0].arn : null
+}
+
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "${var.identifier}-subnet-group"
   subnet_ids = var.subnet_ids
@@ -30,5 +34,5 @@ resource "aws_db_instance" "db_instance" {
 
   # at rest encryption 
   storage_encrypted = var.enable_at_rest_encryption
-  kms_key_id        = var.enable_at_rest_encryption && var.create_kms_key == false ? try(var.kms_key_arn, null) : var.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key[0].arn : null
+  kms_key_id        = local.selected_kms_key
 }
