@@ -22,4 +22,10 @@ resource "aws_db_instance" "db_instance" {
   parameter_group_name  = var.parameter_group_name
   port                  = var.port
   tags                  = var.tags
+  skip_final_snapshot   = var.skip_final_snapshot
+
+  # backups 
+  backup_retention_period = var.backup_retention_period
+  backup_window           = var.backup_window
+  maintenance_window      = var.maintenance_window
 }

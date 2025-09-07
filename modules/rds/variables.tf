@@ -27,7 +27,7 @@ variable "enable_deletion_protection" {
 
 variable "engine" {
   type        = string
-  description = "The databsae engine to use for this DB instance."
+  description = "The database engine to use for this DB instance."
 }
 
 variable "engine_version" {
@@ -77,3 +77,26 @@ variable "tags" {
   description = "The password for the master db user."
 }
 
+variable "skip_final_snapshot" {
+  type        = bool
+  description = "Boolean toggle to skip final snapshot on RDS deletion"
+  default     = false
+}
+
+variable "backup_retention_period" {
+  type        = number
+  description = "Set retention period for daily RDS snapshots"
+  default     = 7
+}
+
+variable "backup_window" {
+  type        = string
+  description = "Daily time range (UTC) at which backups are created."
+  default     = "03:00-04:00"
+}
+
+variable "maintenance_window" {
+  type        = string
+  description = "Time range (UTC) at which maintenance operations are performed."
+  default     = "sun:05:00-sun:06:00"
+}
