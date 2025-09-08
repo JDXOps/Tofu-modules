@@ -100,3 +100,29 @@ variable "maintenance_window" {
   description = "Time range (UTC) at which maintenance operations are performed."
   default     = "sun:05:00-sun:06:00"
 }
+
+
+variable "create_kms_key" {
+  type        = bool
+  description = "Create KMS key for encrypting RDS instance data"
+  default     = false
+}
+
+
+variable "kms_key_arn" {
+  type        = string
+  description = "The ARN of the KMS key to use for at rest encryption.  Set if var.create_kms_key is false"
+  default     = null
+}
+
+variable "enable_at_rest_encryption" {
+  type        = bool
+  description = "Enable at rest encryption of data within RDS instance"
+  default     = true
+}
+
+variable "publicly_accessible" {
+  type        = bool
+  description = "Enable access from the public internet"
+  default     = false
+}

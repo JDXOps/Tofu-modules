@@ -1,10 +1,13 @@
+locals {
+  selected_kms_key = var.enable_at_rest_encryption && var.create_kms_key == false ? try(var.kms_key_arn, null) : var.enable_at_rest_encryption && var.create_kms_key ? aws_kms_key.kms_key[0].arn : null
+}
+
 resource "aws_db_subnet_group" "subnet_group" {
   name       = "${var.identifier}-subnet-group"
   subnet_ids = var.subnet_ids
 
   tags = var.tags
 }
-
 
 resource "aws_db_instance" "db_instance" {
   identifier            = var.identifier
@@ -23,9 +26,14 @@ resource "aws_db_instance" "db_instance" {
   port                  = var.port
   tags                  = var.tags
   skip_final_snapshot   = var.skip_final_snapshot
+  publicly_accessible   = var.publicly_accessible
 
   # backups 
   backup_retention_period = var.backup_retention_period
   backup_window           = var.backup_window
   maintenance_window      = var.maintenance_window
+
+  # at rest encryption 
+  storage_encrypted = var.enable_at_rest_encryption
+  kms_key_id        = local.selected_kms_key
 }
