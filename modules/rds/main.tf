@@ -26,7 +26,7 @@ resource "aws_db_instance" "db_instance" {
   port                  = var.port
   tags                  = var.tags
   skip_final_snapshot   = var.skip_final_snapshot
-  publicly_accessible = var.publicly_accessible
+  publicly_accessible   = var.publicly_accessible
 
   # backups 
   backup_retention_period = var.backup_retention_period

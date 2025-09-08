@@ -121,8 +121,8 @@ variable "enable_at_rest_encryption" {
   default     = true
 }
 
-variable "publicly_accessible" { 
-  type = bool 
+variable "publicly_accessible" {
+  type        = bool
   description = "Enable access from the public internet"
-  default = false 
+  default     = false
 }
