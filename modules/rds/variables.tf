@@ -120,3 +120,9 @@ variable "enable_at_rest_encryption" {
   description = "Enable at rest encryption of data within RDS instance"
   default     = true
 }
+
+variable "publicly_accessible" { 
+  type = bool 
+  description = "Enable access from the public internet"
+  default = false 
+}
