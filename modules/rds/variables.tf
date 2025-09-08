@@ -126,3 +126,15 @@ variable "publicly_accessible" {
   description = "Enable access from the public internet"
   default     = false
 }
+
+variable "allowed_ingress_cidrs" {
+  type        = list(string)
+  default     = []
+  description = "List of CIDR blocks to allow inbound DB access (empty = no access)."
+}
+
+variable "allowed_ingress_sg_ids" {
+  type        = list(string)
+  default     = []
+  description = "List of security group IDs allowed to connect (empty = no access)."
+}
