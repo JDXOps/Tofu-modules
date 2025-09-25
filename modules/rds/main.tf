@@ -36,6 +36,7 @@ resource "aws_db_instance" "db_instance" {
   # at rest encryption 
   storage_encrypted = var.enable_at_rest_encryption
   kms_key_id        = local.selected_kms_key
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
 }
 
 resource "aws_security_group" "rds_sg" {
