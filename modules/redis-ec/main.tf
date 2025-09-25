@@ -3,7 +3,7 @@ resource "aws_elasticache_cluster" "example" {
   engine               = var.engine
   engine_version       = var.engine_version
   node_type            = "cache.m4.large"
-  num_cache_nodes      = var.num_nodes
+  num_cache_nodes      = 1
   apply_immediately    = var.apply_immediately
   maintenance_window   = var.maintenance_window
   parameter_group_name = "default.memcached1.4"

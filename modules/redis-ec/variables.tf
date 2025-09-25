@@ -18,11 +18,6 @@ variable "engine_version" {
   description = "Version number of the cache engine to be used. Default is the latest version"
 }
 
-variable "num_nodes" {
-  type        = number
-  description = "The initial number of cache nodes that are deployed for the Elasticache cluster"
-}
-
 variable "apply_immediately" {
   type        = bool
   description = "Toggle to control if modifications to the Elasticache happen immediatley or during the maintenance window"

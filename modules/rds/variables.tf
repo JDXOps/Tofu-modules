@@ -74,7 +74,7 @@ variable "parameter_group_name" {
 
 variable "tags" {
   type        = map(any)
-  description = "The password for the master db user."
+  description = "Tags to set on the RDS"
 }
 
 variable "skip_final_snapshot" {
