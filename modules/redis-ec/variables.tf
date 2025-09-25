@@ -19,24 +19,24 @@ variable "engine_version" {
 }
 
 variable "num_nodes" {
-    type = number
-    description = "The initial number of cache nodes that are deployed for the Elasticache cluster"
+  type        = number
+  description = "The initial number of cache nodes that are deployed for the Elasticache cluster"
 }
 
 variable "apply_immediately" {
-    type = bool 
-    description = "Toggle to control if modifications to the Elasticache happen immediatley or during the maintenance window"
+  type        = bool
+  description = "Toggle to control if modifications to the Elasticache happen immediatley or during the maintenance window"
 }
 
 variable "maintenance_window" {
-    type = string 
-    description = "Specify the weekly time range for when maintenance on the cache cluster is performed"
-    default = "sun:05:00-sun:09:00"
+  type        = string
+  description = "Specify the weekly time range for when maintenance on the cache cluster is performed"
+  default     = "sun:05:00-sun:09:00"
 }
 
 variable "port" {
-    type = number 
-    description = "The port number on which each of the cahce nodes will accept connections"
+  type        = number
+  description = "The port number on which each of the cahce nodes will accept connections"
 }
 
 variable "tags" {

@@ -1,16 +1,16 @@
 resource "aws_elasticache_cluster" "example" {
   cluster_id           = var.name
   engine               = var.engine
-  engine_version       = var.engine_version 
+  engine_version       = var.engine_version
   node_type            = "cache.m4.large"
   num_cache_nodes      = var.num_nodes
-  apply_immediately = var.apply_immediately
-  maintenance_window = var.maintenance_window
+  apply_immediately    = var.apply_immediately
+  maintenance_window   = var.maintenance_window
   parameter_group_name = "default.memcached1.4"
-  subnet_group_name = aws_elasticache_subnet_group.subnet_group.name
+  subnet_group_name    = aws_elasticache_subnet_group.subnet_group.name
   port                 = var.port
-  security_group_ids =  [aws_security_group.ec_sg.id]
-  tags = var.tags 
+  security_group_ids   = [aws_security_group.ec_sg.id]
+  tags                 = var.tags
 }
 
 resource "aws_elasticache_subnet_group" "subnet_group" {
@@ -29,8 +29,8 @@ resource "aws_security_group" "ec_sg" {
     Name = "${var.name}-sg"
   }
 }
-  resource "aws_vpc_security_group_ingress_rule" "from_cidrs" {
- 
+resource "aws_vpc_security_group_ingress_rule" "from_cidrs" {
+
   for_each = toset(var.allowed_ingress_cidrs)
 
   security_group_id = aws_security_group.rds_sg.id
